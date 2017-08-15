@@ -12,8 +12,9 @@ import { HttpModule } from '@angular/http';
 import { SwingModule } from 'angular2-swing';
 
 // Imports modules required for Firebase
-import { Databaseservice } from "../providers/databaseservice";
+// import { Databaseservice } from "../providers/databaseservice";
 import { AngularFireModule } from "angularfire2";
+import { DatabaseserviceProvider } from '../providers/databaseservice/databaseservice';
 
 export const firebaseConfig = {
 apiKey: '',
@@ -32,7 +33,7 @@ messagingSenderId: ''
     BrowserModule,
     HttpModule,
     SwingModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig)
   ],
   bootstrap: [IonicApp],
@@ -43,7 +44,8 @@ messagingSenderId: ''
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    DatabaseserviceProvider
   ]
 })
 export class AppModule {}
