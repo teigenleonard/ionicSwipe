@@ -6,8 +6,22 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+
+// Imports modules required for swipe feature
 import { HttpModule } from '@angular/http';
 import { SwingModule } from 'angular2-swing';
+
+// Imports modules required for Firebase
+import { Databaseservice } from "../providers/databaseservice";
+import { AngularFireModule } from "angularfire2";
+
+export const firebaseConfig = {
+apiKey: '',
+authDomain: '',
+databaseURL: '',
+storageBucket: '',
+messagingSenderId: ''
+};
 
 @NgModule({
   declarations: [
@@ -19,6 +33,7 @@ import { SwingModule } from 'angular2-swing';
     HttpModule,
     SwingModule,
     IonicModule.forRoot(MyApp)
+    AngularFireModule.initializeApp(firebaseConfig)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
