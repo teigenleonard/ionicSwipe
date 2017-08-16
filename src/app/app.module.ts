@@ -13,16 +13,31 @@ import { SwingModule } from 'angular2-swing';
 
 // Imports modules required for Firebase
 // import { Databaseservice } from "../providers/databaseservice";
-import { AngularFireModule } from "angularfire2";
-import { DatabaseserviceProvider } from '../providers/databaseservice/databaseservice';
+// import { AngularFireModule } from "angularfire2";
+// import { DatabaseserviceProvider } from '../providers/databaseservice/databaseservice';
+// import { FirebaseProvider } from '../providers/firebase/firebase';
 
-export const firebaseConfig = {
-apiKey: '',
-authDomain: '',
-databaseURL: '',
-storageBucket: '',
-messagingSenderId: ''
-};
+// Imports modules required for Firebase
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireModule } from 'angularfire2';
+import { FirebaseProvider } from './../providers/firebase/firebase';
+
+// export const firebaseConfig = {
+// apiKey: '',
+// authDomain: '',
+// databaseURL: '',
+// storageBucket: '',
+// messagingSenderId: ''
+// };
+
+const firebaseConfig = {
+    apiKey: "YOURKEY",
+    authDomain: "domain.firebaseapp.com",
+    databaseURL: "https://domain.firebaseio.com",
+    projectId: "yourvalues",
+    storageBucket: "dmaoin.appspot.com",
+    messagingSenderId: "yourvalues"
+  };
 
 @NgModule({
   declarations: [
@@ -33,8 +48,9 @@ messagingSenderId: ''
     BrowserModule,
     HttpModule,
     SwingModule,
-    IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(firebaseConfig)
+    AngularFireDatabaseModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -45,7 +61,10 @@ messagingSenderId: ''
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    DatabaseserviceProvider
+    // DatabaseserviceProvider,
+    // FirebaseProvider
+    FirebaseProvider
+
   ]
 })
 export class AppModule {}

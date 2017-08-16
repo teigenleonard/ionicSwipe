@@ -3,6 +3,11 @@ import { NavController } from 'ionic-angular';
 import { Http } from '@angular/http';
 import 'rxjs/Rx'
 
+// Module require to link to Firebase
+import { FirebaseProvider } from './../../providers/firebase/firebase';
+import { FirebaseListObservable } from 'angularfire2/database';
+
+// Modules required for swipe feature
 import {
   StackConfig,
   Stack,
@@ -17,6 +22,21 @@ import {
   templateUrl: 'home.html'
 })
 export class HomePage {
+  // shoppingItems: FirebaseListObservable<any[]>;
+  // newItem = '';
+  //
+  // constructor(public navCtrl: NavController, public firebaseProvider: FirebaseProvider) {
+  //   this.shoppingItems = this.firebaseProvider.getShoppingItems();
+  // }
+  //
+  // addItem() {
+  //   this.firebaseProvider.addItem(this.newItem);
+  // }
+  //
+  // removeItem(id) {
+  //   this.firebaseProvider.removeItem(id);
+  // }
+
   @ViewChild('myswing1') swingStack: SwingStackComponent;
   @ViewChildren('mycards1') swingCards: QueryList<SwingCardComponent>;
 
@@ -24,7 +44,7 @@ export class HomePage {
   stackConfig: StackConfig;
   recentCard: string = '';
 
-  constructor(private http: Http) {
+  constructor(private http: Http, public navCtrl: NavController, public firebaseProvider: FirebaseProvider) {
     this.stackConfig = {
       throwOutConfidence: (offsetX, offsetY, element) => {
         return Math.min(Math.abs(offsetX) / (element.offsetWidth/2), 1);
